@@ -68,7 +68,8 @@ export default {
         })
         }
         return {
-            ...toRefs(state)
+            ...toRefs(state),
+            nextClick
         }
     }
     }
