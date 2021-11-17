@@ -14,6 +14,11 @@ const router = createRouter({
             path: '/testcase',
             name: 'testcase',
             component: () => import(/* webpackChunkName: "home" */ '../views/TestCases.vue')
+        },
+        {
+            path: '/task',
+            name: 'task',
+            component: () => import(/* webpackChunkName: "home" */ '../components/TaskEditor.vue')
         }
     ]
 })
