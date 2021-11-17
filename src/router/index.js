@@ -1,0 +1,22 @@
+
+
+import { createRouter, createWebHashHistory } from 'vue-router'
+
+const router = createRouter({
+    history: createWebHashHistory(),
+    routes: [
+        {
+            path: '/',
+            name: 'home',
+            redirect: '/testcase'
+        },
+        {
+            path: '/testcase',
+            name: 'testcase',
+            component: () => import(/* webpackChunkName: "home" */ '../views/TestCases.vue')
+        }
+    ]
+})
+
+
+export default router
