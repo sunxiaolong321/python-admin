@@ -9,7 +9,13 @@ import { defineComponent, onBeforeUnmount, onMounted, ref, reactive } from "vue"
 import wangeditor from 'wangeditor';
 
 export default defineComponent({
-    setup() {
+    props: {
+        text: {
+            type: String,
+            default: '初始化Rich编辑器'
+        }
+    },
+    setup(props) {
         const editor = ref(null);
         const content = reactive({
             text: '',
@@ -24,6 +30,7 @@ export default defineComponent({
                 }
             })
             instance.create();
+            instance.txt.html(props.text);
         })
         onBeforeUnmount(()=>{
             instance.destroy();

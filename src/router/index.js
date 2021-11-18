@@ -8,17 +8,17 @@ const router = createRouter({
         {
             path: '/',
             name: 'home',
-            redirect: '/testcase'
+            redirect: '/testcases'
         },
         {
-            path: '/testcase',
-            name: 'testcase',
-            component: () => import(/* webpackChunkName: "home" */ '../views/TestCases.vue')
+            path: '/testcases',
+            name: 'testcases',
+            component: () => import(/* webpackChunkName: "home" */ '../views/TestCases.vue'),
         },
         {
-            path: '/task',
-            name: 'task',
-            component: () => import(/* webpackChunkName: "home" */ '../components/TaskEditor.vue')
+            path: '/edit',
+            name: 'task-editor',
+            component:() => import(/* webpackChunkName: "home" */ '../components/TaskEditor.vue')
         }
     ]
 })
