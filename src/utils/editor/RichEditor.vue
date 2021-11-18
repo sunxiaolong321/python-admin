@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { defineComponent, onBeforeUnmount, onMounted, ref, reactive } from "vue";
+import { defineComponent, onBeforeUnmount, onMounted, ref, reactive, toRefs } from "vue";
 import wangeditor from 'wangeditor';
 
 export default defineComponent({
@@ -41,7 +41,7 @@ export default defineComponent({
         }
         return {
             editor,
-            content,
+            ...toRefs(content),
             syncHTML
         }
     }

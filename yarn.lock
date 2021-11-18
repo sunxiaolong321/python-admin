@@ -159,6 +159,11 @@ axios@^0.24.0:
   dependencies:
     follow-redirects "^1.14.4"
 
+codemirror@^5.63.3:
+  version "5.63.3"
+  resolved "https://registry.npmmirror.com/codemirror/download/codemirror-5.63.3.tgz#97042a242027fe0c87c09b36bc01931d37b76527"
+  integrity sha1-lwQqJCAn/gyHwJs2vAGTHTe3ZSc=
+
 core-js-pure@^3.19.0:
   version "3.19.1"
   resolved "https://registry.npmmirror.com/core-js-pure/download/core-js-pure-3.19.1.tgz?cache=0&sync_timestamp=1635884843415&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fcore-js-pure%2Fdownload%2Fcore-js-pure-3.19.1.tgz#edffc1fc7634000a55ba05e95b3f0fe9587a5aa4"

@@ -8,8 +8,8 @@
             inactive-text="富文本编辑器"
             @change="switchChange"
         />
-        <md-editor v-if="switchbutton"></md-editor>
-        <rich-editor v-else></rich-editor>
+        <md-editor v-if="switchbutton" :text="text"></md-editor>
+        <rich-editor v-else :text="text"></rich-editor>
     </div>
 </template>
 
@@ -32,6 +32,7 @@ export default {
 
         const status = reactive({
             switchbutton: true,
+            text: ''
         })
 
         const switchChange = (val) => {
@@ -42,6 +43,8 @@ export default {
             params: {
                 id: route.params.taskId
             }
+        }).then(res=>{
+            console.log(res)
         })
         return {
             ...toRefs(status),

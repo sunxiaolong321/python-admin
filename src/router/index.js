@@ -19,6 +19,11 @@ const router = createRouter({
             path: '/edit',
             name: 'task-editor',
             component:() => import(/* webpackChunkName: "home" */ '../components/TaskEditor.vue')
+        },
+        {
+            path: '/:pathMatch(.*)*',
+            name: 'NotFound',
+            component: () => import(/* webpackChunkName: "home" */ '../views/404.vue'),
         }
     ]
 })

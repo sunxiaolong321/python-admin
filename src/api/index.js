@@ -6,7 +6,7 @@ axios.defaults.baseURL = '/api'
 axios.defaults.headers['x-Requrested-With'] = 'XMLRequest'
 axios.defaults.headers['Content-Type'] = 'application/json'
 axios.defaults.withCredentials = false
-axios.defaults.timeout = 10000
+axios.defaults.timeout = 1000
 
 axios.interceptors.response.use((res) => {
     if (typeof res.data !== 'object') {
