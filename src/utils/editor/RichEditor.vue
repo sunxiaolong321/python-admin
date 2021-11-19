@@ -1,7 +1,7 @@
 <template>
 <div ref='editor'></div>
 <button @click='syncHTML'>同步内容</button>
-<div :innerHTML='content.html'></div>
+<div :innerHTML='html'></div>
 </template>
 
 <script>
@@ -9,6 +9,7 @@ import { defineComponent, onBeforeUnmount, onMounted, ref, reactive, toRefs } fr
 import wangeditor from 'wangeditor';
 
 export default defineComponent({
+    name: 'RichTextEditor',
     props: {
         text: {
             type: String,
@@ -17,7 +18,7 @@ export default defineComponent({
     },
     setup(props) {
         const editor = ref(null);
-        const content = reactive({
+        const status = reactive({
             text: '',
             html: ''
         });
@@ -37,11 +38,11 @@ export default defineComponent({
             instance = null;
         })
         const syncHTML = () => {
-            content.html = instance.txt.html();
+            status.html = instance.txt.html();
         }
         return {
             editor,
-            ...toRefs(content),
+            ...toRefs(status),
             syncHTML
         }
     }

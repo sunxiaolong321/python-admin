@@ -13,16 +13,16 @@ axios.interceptors.response.use((res) => {
       ElMessage.error('服务端异常！')
       return Promise.reject(res)
     }
-    if (res.data.resultCode != 200) {
-      if (res.data.message) ElMessage.error(res.data.message)
-      if (res.data.resultCode == 419) {
+
+    if (res.status != 200) {
+      if (res.status) ElMessage.error(res.data.message)
+      if (res.status == 419) {
         router.push({ path: '/' })
       }
-      
       return Promise.reject(res.data)
     }
   
-    return res.data.data
+    return res.data
   },
   (error) => {
     ElMessage.error('服务端异常！')
