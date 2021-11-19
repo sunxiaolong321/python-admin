@@ -1,11 +1,11 @@
 <template>
-<div ref='editor'></div>
-<button @click='syncHTML'>同步内容</button>
-<div :innerHTML='html'></div>
+    <div ref="editor"></div>
+    <button @click="syncHTML">同步内容</button>
+    <div :innerHTML="html"></div>
 </template>
 
 <script>
-import { defineComponent, onBeforeUnmount, onMounted, ref, reactive, toRefs } from "vue";
+import { defineComponent, onBeforeUnmount, onMounted, ref, reactive, toRefs, watch } from "vue";
 import wangeditor from 'wangeditor';
 
 export default defineComponent({
@@ -16,33 +16,38 @@ export default defineComponent({
             default: '初始化Rich编辑器'
         }
     },
-    setup(props) {
+    emits: ['listen'],
+    setup(props, { emit }) {
         const editor = ref(null);
-        const status = reactive({
+        const state = reactive({
             text: '',
             html: ''
         });
         let instance;
-        onMounted(()=>{
+        onMounted(() => {
             instance = new wangeditor(editor.value);
             Object.assign(instance.config, {
                 onchange() {
                     console.log('change');
+                    emit('listen', instance.txt.html());
                 }
             })
             instance.create();
             instance.txt.html(props.text);
         })
-        onBeforeUnmount(()=>{
+        onBeforeUnmount(() => {
             instance.destroy();
             instance = null;
         })
+        watch(props, (newValue, oldValue) => {
+            state.text = newValue.text;
+        });
         const syncHTML = () => {
-            status.html = instance.txt.html();
+            state.html = instance.txt.html();
         }
         return {
             editor,
-            ...toRefs(status),
+            ...toRefs(state),
             syncHTML
         }
     }

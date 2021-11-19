@@ -5,14 +5,12 @@
 </template>
 
 <script>
-import { refs, onMounted, toRefs,reactive } from 'vue'
+import { ref, toRefs,reactive,onUnmounted } from 'vue'
 import CodeMirror from 'codemirror'
 import "codemirror/lib/codemirror.css";
 import 'codemirror/mode/javascript/javascript'
 
 // 代码错误检查
-// eslint-disable-next-line import/no-webpack-loader-syntax
-require("script-loader!jsonlint");
 import "codemirror/addon/lint/lint.css";
 import "codemirror/addon/lint/lint";
 import "codemirror/addon/lint/json-lint";
@@ -48,11 +46,11 @@ export default {
         }
     },
     setup(props) {
-        const jsonEditor = useRef(null);
+        const jsonEditor = ref(null);
         const state = reactive({
             jsonCode: props.jsonCode || '',
         });
-        onUnmount(()=>{
+        onUnmounted(()=>{
             jsonEditor = CodeMirror.fromTextArea(jsonEditor.current, {
                 mode: "application/json",
                 theme: 'base16-light',
@@ -82,6 +80,10 @@ export default {
 
         const refresh = () => {
             jsonEditor.current.refresh();
+        }
+        return {
+            ...toRefs(state),
+            refresh
         }
     }
 }

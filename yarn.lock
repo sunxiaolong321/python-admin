@@ -179,6 +179,11 @@ dayjs@^1.10.7:
   resolved "https://registry.nlark.com/dayjs/download/dayjs-1.10.7.tgz?cache=0&sync_timestamp=1631266519235&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fdayjs%2Fdownload%2Fdayjs-1.10.7.tgz#2cf5f91add28116748440866a0a1d26f3a6ce468"
   integrity sha1-LPX5Gt0oEWdIRAhmoKHSbzps5Gg=
 
+domino@^2.1.6:
+  version "2.1.6"
+  resolved "https://registry.nlark.com/domino/download/domino-2.1.6.tgz#fe4ace4310526e5e7b9d12c7de01b7f485a57ffe"
+  integrity sha1-/krOQxBSbl57nRLH3gG39IWlf/4=
+
 element-plus@^1.2.0-beta.3:
   version "1.2.0-beta.3"
   resolved "https://registry.npmmirror.com/element-plus/download/element-plus-1.2.0-beta.3.tgz#0ded059e6c8ddc6f5d9dcdf32e1b7ed44ac38099"
@@ -347,6 +352,11 @@ magic-string@^0.25.7:
   dependencies:
     sourcemap-codec "^1.4.4"
 
+marked@^4.0.3:
+  version "4.0.3"
+  resolved "https://registry.npmmirror.com/marked/download/marked-4.0.3.tgz?cache=0&sync_timestamp=1636778186560&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fmarked%2Fdownload%2Fmarked-4.0.3.tgz#986760a428d8fd666251ec578429bf9a239a34bc"
+  integrity sha512-vSwKKtw+lCA0uFK/02JT4tBfNxEREpoTg21NoXqcmX0ySBIEyLMYWmt8WPsM61QNFaDBZkggupyNXLsV7uPuRg==
+
 md-editor-v3@^1.6.4:
   version "1.6.4"
   resolved "https://registry.npmmirror.com/md-editor-v3/download/md-editor-v3-1.6.4.tgz#419a8e8c14c595a43bb6190c08b81bd9c992021e"
@@ -425,6 +435,13 @@ tslib@^2.1.0:
   version "2.3.1"
   resolved "https://registry.nlark.com/tslib/download/tslib-2.3.1.tgz#e8a335add5ceae51aa261d32a490158ef042ef01"
   integrity sha1-6KM1rdXOrlGqJh0ypJAVjvBC7wE=
+
+turndown@^7.1.1:
+  version "7.1.1"
+  resolved "https://registry.nlark.com/turndown/download/turndown-7.1.1.tgz#96992f2d9b40a1a03d3ea61ad31b5a5c751ef77f"
+  integrity sha1-lpkvLZtAoaA9PqYa0xtaXHUe938=
+  dependencies:
+    domino "^2.1.6"
 
 vite@^2.6.4:
   version "2.6.14"
