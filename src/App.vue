@@ -6,6 +6,7 @@
         <el-sub-menu index="1">
           <template #title>试题相关</template>
           <el-menu-item-group>
+            <el-menu-item index="/">仪表盘</el-menu-item>
             <el-menu-item index="/testcases">试题管理</el-menu-item>
           </el-menu-item-group>
         </el-sub-menu>

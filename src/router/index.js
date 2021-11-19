@@ -7,8 +7,13 @@ const router = createRouter({
     routes: [
         {
             path: '/',
+            name: 'index',
+            redirect: '/home'
+        },
+        {
+            path: '/home',
             name: 'home',
-            redirect: '/testcases'
+            component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue')
         },
         {
             path: '/testcases',
