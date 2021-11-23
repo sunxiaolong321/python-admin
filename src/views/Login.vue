@@ -4,6 +4,7 @@
             <div class="name">Python软件后台管理系统</div>
         </div>
         <el-form
+            @keyup.enter="test"
             label-position="top"
             :rules="rules"
             :model="ruleForm"
@@ -13,10 +14,20 @@
             class="login-form"
         >
             <el-form-item label="账号" prop="username">
-                <el-input type="text" v-model.trim="ruleForm.username" autocomplete="off"></el-input>
+                <el-input
+                    type="text"
+                    v-model.trim="ruleForm.username"
+                    autocomplete="off"
+                    placeholder="请输入账号"
+                ></el-input>
             </el-form-item>
             <el-form-item label="密码" prop="password">
-                <el-input type="password" v-model.trim="ruleForm.password" autocomplete="off"></el-input>
+                <el-input
+                    type="password"
+                    v-model.trim="ruleForm.password"
+                    autocomplete="off"
+                    placeholder="请输入密码"
+                ></el-input>
             </el-form-item>
             <el-form-item>
                 <div class="login-agreement">
@@ -40,7 +51,7 @@ import { ElMessage } from 'element-plus'
 
 export default {
     name: 'Login',
-    setup() {
+    setup(props, { emit }) {
         const router = useRouter()
         const loginForm = ref(null)
 
@@ -61,6 +72,8 @@ export default {
         })
 
         const submitForm = async () => {
+
+            emit('loading', true);
             loginForm.value.validate(valid => {
                 if (valid) {
                     // let hash = crypto.createHash('md5')
@@ -78,6 +91,8 @@ export default {
                         } else {
                             ElMessage.error('账号或密码错误，请重新输入');
                         }
+                    }).finally(() => {
+                        emit('loading', false);
                     })
                 } else {
                     return false
@@ -85,10 +100,15 @@ export default {
             })
         }
 
+        const test = () => {
+            console.log(state.checked);
+        }
+
         return {
             ...toRefs(state),
             loginForm,
-            submitForm
+            submitForm,
+            test
         }
     }
 }
@@ -110,7 +130,7 @@ export default {
     width: 420px;
     height: 500px;
     margin: 0 auto;
-    border-radius: 10px;
+    border-radius: 12px;
     margin-top: 200px;
 }
 .login-card:hover {

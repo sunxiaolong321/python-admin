@@ -26,8 +26,8 @@
     </el-container>
   </el-container>
 
-  <el-container v-else class="container">
-    <router-view />
+  <el-container v-else class="container" v-loading="loading">
+    <router-view @loading="changeLoading" />
   </el-container>
 </template>
 
@@ -46,11 +46,11 @@ export default {
   setup() {
     const route = useRoute()
     const state = reactive({
-      showMenu: false
+      showMenu: false,
+      loading: false
     })
 
     watch(() => route.path, (path) => {
-      console.log(path);
       if (path === '/login') {
         state.showMenu = false
       } else {
@@ -58,8 +58,13 @@ export default {
       }
     })
 
+    const changeLoading = (value) => {
+      state.loading = value
+    }
+
     return {
-      ...toRefs(state)
+      ...toRefs(state),
+      changeLoading
     }
   }
 }
