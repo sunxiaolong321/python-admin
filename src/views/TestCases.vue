@@ -1,31 +1,28 @@
 <template>
-<el-table empty-text="暂无题目" :data="tableData">
-    <el-table-column type="selection" width="55" />
-    <el-table-column label="索引" type="index" width="180" />
-    <el-table-column prop="module_name" label="所属模块" sortable width="180" />
-    <el-table-column prop="task_name" label="题目名称" width="180" />
-    <el-table-column prop="topic_difficulty" label="题目难度" width="180" />
-    <el-table-column label="操作">
-        <template #default="scope">
-            <el-button @click="editor(scope.$index, scope.row)">
-                编辑
-            </el-button>
-        </template>
-    </el-table-column>
-    <router-view></router-view>
-</el-table>
-<el-pagination
-    background
-    :page-size="pageSize"
-    layout="prev, pager, next"
-    :page-sizes="[10, 15, 20, 50]"
-    :total="totalNum"
-    :current-page="currentPage"
-    @current-change="handleCurrentChange"
-    @prev-click="prevClick"
-    @next-click="nextClick"
->
-  </el-pagination>
+    <el-table empty-text="暂无题目" :data="tableData" height-currrent-row="true">
+        <el-table-column type="selection" />
+        <el-table-column label="索引" type="index" width="100" />
+        <el-table-column prop="module_name" label="所属模块" sortable />
+        <el-table-column prop="task_name" label="题目名称" />
+        <el-table-column prop="topic_difficulty" label="题目难度" />
+        <el-table-column label="操作">
+            <template #default="scope">
+                <el-button @click="editor(scope.$index, scope.row)">编辑</el-button>
+            </template>
+        </el-table-column>
+        <router-view></router-view>
+    </el-table>
+    <el-pagination
+        background
+        :page-size="pageSize"
+        layout="prev, pager, next"
+        :page-sizes="[10, 15, 20, 50]"
+        :total="totalNum"
+        :current-page="currentPage"
+        @current-change="handleCurrentChange"
+        @prev-click="prevClick"
+        @next-click="nextClick"
+    ></el-pagination>
 </template>
 
 <script>
@@ -35,7 +32,7 @@ import { useRouter } from 'vue-router'
 
 export default {
     name: 'TestCases',
-    setup () {
+    setup() {
 
         const router = useRouter()
         const state = reactive({
@@ -52,18 +49,18 @@ export default {
                     page_size: state.pageSize,
                 }
             }).then(res => {
-            state.tableData = []
-            state.totalNum = res.data.total_num
-            state.totalNum = res.total_num
-            res.data.forEach(item => {
-                state.tableData.push({
-                    'module_name': '默认',
-                    'task_name': item.task_name,
-                    'topic_difficulty': item.task_weight,
-                    '_id': item._id
+                state.tableData = []
+                state.totalNum = res.data.total_num
+                state.totalNum = res.total_num
+                res.data.forEach(item => {
+                    state.tableData.push({
+                        'module_name': '默认',
+                        'task_name': item.task_name,
+                        'topic_difficulty': item.task_weight,
+                        '_id': item._id
+                    })
                 })
             })
-        })
         }
 
         const prevClick = () => {
@@ -101,5 +98,5 @@ export default {
             editor
         }
     }
-    }
+}
 </script>

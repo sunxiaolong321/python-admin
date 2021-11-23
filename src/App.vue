@@ -1,13 +1,14 @@
 <template>
-  <el-container class="container">
+  <el-container v-if="showMenu" class="container">
     <el-aside class="aside">
       <div class="head">侧标题栏</div>
       <el-menu default-active="1" background-color="#222832" text-color="#fff" :router="true">
         <el-sub-menu index="1">
           <template #title>试题相关</template>
           <el-menu-item-group>
-            <el-menu-item index="/">仪表盘</el-menu-item>
+            <el-menu-item index="/dashboard">仪表盘</el-menu-item>
             <el-menu-item index="/testcases">试题管理</el-menu-item>
+            <el-menu-item index="/demo">Demo</el-menu-item>
           </el-menu-item-group>
         </el-sub-menu>
       </el-menu>
@@ -24,17 +25,42 @@
       </el-footer>
     </el-container>
   </el-container>
+
+  <el-container v-else class="container">
+    <router-view />
+  </el-container>
 </template>
 
 <script>
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
+import { toRefs, reactive, watch } from 'vue'
+import { useRoute } from 'vue-router'
 
 export default {
   name: "App",
   components: {
     Header,
     Footer
+  },
+  setup() {
+    const route = useRoute()
+    const state = reactive({
+      showMenu: false
+    })
+
+    watch(() => route.path, (path) => {
+      console.log(path);
+      if (path === '/login') {
+        state.showMenu = false
+      } else {
+        state.showMenu = true
+      }
+    })
+
+    return {
+      ...toRefs(state)
+    }
   }
 }
 </script>
@@ -45,7 +71,7 @@ export default {
   background-color: #ffffff;
 }
 .container {
-  background: #F2F6FC;
+  background: #f2f6fc;
   height: 100vh;
 }
 .aside {
@@ -88,8 +114,6 @@ export default {
 }
 .el-main {
   margin-block: 10px;
-  /* margin-top: 10px; */
-  background: #fff;
   flex: 1;
   overflow: hidden;
 }

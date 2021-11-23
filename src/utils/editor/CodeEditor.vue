@@ -51,7 +51,7 @@ export default {
             jsonCode: props.jsonCode || '',
         });
         onUnmounted(()=>{
-            jsonEditor = CodeMirror.fromTextArea(jsonEditor.current, {
+            jsonEditor.value = CodeMirror.fromTextArea(jsonEditor.value.current, {
                 mode: "application/json",
                 theme: 'base16-light',
                 lineNumbers: true,
