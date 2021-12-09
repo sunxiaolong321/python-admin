@@ -17,7 +17,6 @@
                 <el-input
                     type="text"
                     v-model.trim="ruleForm.username"
-                    autocomplete="off"
                     placeholder="请输入账号"
                 ></el-input>
             </el-form-item>
@@ -25,7 +24,6 @@
                 <el-input
                     type="password"
                     v-model.trim="ruleForm.password"
-                    autocomplete="off"
                     placeholder="请输入密码"
                 ></el-input>
             </el-form-item>
